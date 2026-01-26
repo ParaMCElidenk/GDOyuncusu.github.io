@@ -19,8 +19,7 @@ header {
   margin: 0 auto 15px auto;
   object-fit: cover;
 }
-body {
-  background-color: lime !important;
+
 }
 .logo {
   width: 140px;
