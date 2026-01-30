@@ -14,19 +14,51 @@
       background-color: #0f0f0f;
       color: white;
       font-family: Arial, sans-serif;
-      font-size: 24px;
+      font-size: 26px;
+      opacity: 1;
+      transition: opacity 0.8s ease;
+      cursor: pointer;
+    }
+
+    body.fade-out {
+      opacity: 0;
+    }
+
+    .hint {
+      position: absolute;
+      bottom: 30px;
+      font-size: 14px;
+      opacity: 0.6;
     }
   </style>
-
-  <script>
-    setTimeout(function () {
-      window.location.href = "home.html";
-    }, 3000); // 3 saniye
-  </script>
 </head>
 <body>
 
   Yükleniyor...
+  <div class="hint">Devam etmek için tıkla</div>
+
+  <audio id="startupSound" src="startup.mp3"></audio>
+
+  <script>
+    let started = false;
+
+    document.body.addEventListener("click", () => {
+      if (started) return;
+      started = true;
+
+      const sound = document.getElementById("startupSound");
+      sound.volume = 0.6;
+      sound.play();
+
+      setTimeout(() => {
+        document.body.classList.add("fade-out");
+      }, 2200);
+
+      setTimeout(() => {
+        window.location.href = "home.html";
+      }, 3000);
+    });
+  </script>
 
 </body>
 </html>
