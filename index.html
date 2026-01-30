@@ -77,16 +77,17 @@ start.addEventListener("click", () => {
   video.muted = false;
   video.play();
 
-  // Video bitimine göre ayarla
-  setTimeout(() => {
+  // Video bitince
+  video.onended = () => {
     document.body.classList.add("fade");
-  }, 12000);
 
-  setTimeout(() => {
-    window.location.href = "home.html";
-  }, 4300);
+    setTimeout(() => {
+      window.location.href = "home.html";
+    }, 800); // fade süresi
+  };
 });
 </script>
+
 
 </body>
 </html>
