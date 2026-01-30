@@ -13,76 +13,98 @@
 
 body {
   height: 100vh;
-  background: linear-gradient(135deg, #050505, #0b0b0b);
+  background: radial-gradient(circle at center, #0aff0a 0%, #050505 60%, #000 100%);
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   font-family: Arial, sans-serif;
 }
 
-/* ARKA PLAN ÇİZGİLER (VALORANT VIBE) */
-.bg-lines::before {
-  content: "";
+/* GD GRID */
+.grid {
   position: absolute;
   inset: 0;
   background:
-    repeating-linear-gradient(
-      120deg,
-      rgba(255,255,255,0.03),
-      rgba(255,255,255,0.03) 1px,
-      transparent 1px,
-      transparent 60px
-    );
-  animation: moveBg 3s linear infinite;
+    linear-gradient(#1aff1a 1px, transparent 1px),
+    linear-gradient(90deg, #1aff1a 1px, transparent 1px);
+  background-size: 50px 50px;
+  opacity: 0.12;
+  animation: gridMove 1.2s linear infinite;
 }
 
-@keyframes moveBg {
-  from { transform: translateX(0); }
-  to { transform: translateX(-120px); }
+@keyframes gridMove {
+  from { background-position: 0 0; }
+  to { background-position: -50px -50px; }
 }
 
-/* LOGO */
+/* WAVE TRAIL */
+.wave {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #1aff1a;
+  box-shadow: 0 0 15px #1aff1a;
+  top: 50%;
+  left: -20px;
+  animation: waveMove 2.4s linear forwards;
+}
+
+/* ZİGZAG DALGA */
+@keyframes waveMove {
+  0%   { transform: translate(0, 0); }
+  10%  { transform: translate(100px, -80px); }
+  20%  { transform: translate(200px, 80px); }
+  30%  { transform: translate(300px, -80px); }
+  40%  { transform: translate(400px, 80px); }
+  50%  { transform: translate(500px, -80px); }
+  60%  { transform: translate(600px, 80px); }
+  70%  { transform: translate(700px, -80px); }
+  80%  { transform: translate(800px, 80px); }
+  90%  { transform: translate(900px, -80px); }
+  100% { transform: translate(1000px, 0); }
+}
+
+/* WAVE GLOW TRAIL */
+.wave::after {
+  content: "";
+  position: absolute;
+  width: 120px;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #1aff1a);
+  top: 2px;
+  left: -120px;
+}
+
+/* LOGO POP */
 .logo {
-  width: 160px;
-  z-index: 2;
-  animation: logoEnter 0.9s ease-out forwards,
-             logoGlitch 1.5s infinite alternate;
+  position: absolute;
+  width: 120px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  animation: logoPop 0.6s ease-out forwards;
+  animation-delay: 2.2s;
+  filter: drop-shadow(0 0 20px #1aff1a);
 }
 
-/* LOGO GİRİŞ */
-@keyframes logoEnter {
-  from {
-    transform: scale(0.3) rotate(-10deg);
-    opacity: 0;
-  }
+@keyframes logoPop {
   to {
-    transform: scale(1) rotate(0);
-    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
   }
 }
 
-/* GLITCH */
-@keyframes logoGlitch {
-  0% { filter: drop-shadow(3px 0 red); }
-  50% { filter: drop-shadow(-3px 0 cyan); }
-  100% { filter: drop-shadow(3px 0 lime); }
-}
-
-/* CS / VALORANT FLASH */
+/* FLASH */
 .flash {
   position: absolute;
   inset: 0;
-  background: white;
+  background: #1aff1a;
   opacity: 0;
-  animation: flash 2.8s forwards;
+  animation: flash 3s forwards;
 }
 
 @keyframes flash {
   0% { opacity: 0; }
-  65% { opacity: 0; }
-  70% { opacity: 0.8; }
-  75% { opacity: 0; }
+  70% { opacity: 0; }
+  75% { opacity: 0.9; }
+  80% { opacity: 0; }
 }
 
 /* FADE OUT */
@@ -96,22 +118,28 @@ body {
 </style>
 
 <script>
-  // Fade-out
   setTimeout(() => {
     document.body.classList.add("fade-out");
-  }, 2800);
+  }, 3300);
 
-  // Ana siteye geçiş
   setTimeout(() => {
     window.location.href = "home.html";
-  }, 3500);
+  }, 4000);
 </script>
 
 </head>
 <body>
 
-  <div class="bg-lines"></div>
+  <div class="grid"></div>
+
+  <!-- WAVE TRAIL -->
+  <div class="wave"></div>
+  <div class="wave" style="animation-delay:0.15s"></div>
+  <div class="wave" style="animation-delay:0.3s"></div>
+  <div class="wave" style="animation-delay:0.45s"></div>
+
   <div class="flash"></div>
+
   <img src="logo.png" class="logo">
 
 </body>
