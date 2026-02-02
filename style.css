@@ -30,3 +30,40 @@ body {
 
 .kick { background: #53fc18; color: black; }
 .youtube { background: #ff0000; }
+.site-footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(6px);
+  border-top: 1px solid #00ff66;
+  box-shadow: 0 -0 20px rgba(0, 255, 102, 0.3);
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: auto;
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #00ff66;
+  font-size: 14px;
+}
+
+.footer-content span {
+  font-weight: bold;
+  text-shadow: 0 0 10px #00ff66;
+}
+
+.footer-right a {
+  margin-left: 15px;
+  color: #00ff66;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.footer-right a:hover {
+  text-shadow: 0 0 12px #00ff66;
+  transform: scale(1.1);
+}
